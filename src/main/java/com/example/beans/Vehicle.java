@@ -1,9 +1,21 @@
 package com.example.beans;
 
+import com.example.Services.VehicleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component("vehicleBean")
 public class Vehicle {
 
-    private String name;
+    private String name = "Honda";
+    private final VehicleService vehicleService;
 
+
+    @Autowired
+    public Vehicle(VehicleService vehicleService) {
+        // this.name = name;
+        this.vehicleService = vehicleService;
+    }
     public String getName() {
         return name;
     }
@@ -12,6 +24,9 @@ public class Vehicle {
         this.name = name;
     }
 
+    public VehicleService getVehicleService() {
+        return vehicleService;
+    }
     public void printHello(){
         System.out.println(
                 "Printing Hello from Component Vehicle Bean");
@@ -21,4 +36,7 @@ public class Vehicle {
     public String toString(){
         return "Vehicle name is - "+name;
     }
+//    public VehicleService getVehicleServices() {
+//        return vehicleServices;
+//    }
 }
